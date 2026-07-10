@@ -7,6 +7,10 @@ const path = require("node:path");
 
 exports.default = async function afterPack(context) {
   if (context.electronPlatformName !== "darwin") return;
+  // For a universal build, electron-builder packs each arch into a "*-temp"
+  // folder and lipo-merges them; that merge requires identical signatures, so
+  // signing the temps breaks it. Sign only the final (merged) app.
+  if (context.appOutDir.endsWith("-temp")) return;
   const appPath = path.join(context.appOutDir, `${context.packager.appInfo.productFilename}.app`);
   console.log(`afterPack: ad-hoc signing ${appPath}`);
   execFileSync("codesign", ["--force", "--deep", "--sign", "-", appPath], { stdio: "inherit" });
