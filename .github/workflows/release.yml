@@ -7,6 +7,10 @@ on:
     tags:
       - "v*"
 
+# electron-builder needs write access to create the GitHub Release + upload assets.
+permissions:
+  contents: write
+
 jobs:
   release:
     strategy:
