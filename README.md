@@ -5,7 +5,18 @@ reproduces the capacity spreadsheet: available hours, hours filled, capacity %,
 new patients, follow-ups booked and conversion %, per week and per month, with
 projections and RAG colour coding against targets.
 
-## Setup
+## Download the desktop app
+
+Grab the latest macOS/Windows installer from the
+[**Releases** page](https://github.com/richmidwinter/cliniko-capacity/releases/latest).
+Install it, open it, and enter your Cliniko API key on first launch (stored only
+on your machine). It updates itself from new releases.
+
+> These builds aren't code-signed yet, so the OS warns on first launch:
+> on **macOS** right-click the app → **Open** → **Open**; on **Windows** choose
+> **More info → Run anyway**. See [desktop/README.md](desktop/README.md) for details.
+
+## Run from source (web / development)
 
 ```bash
 npm install
