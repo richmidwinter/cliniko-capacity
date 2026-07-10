@@ -32,6 +32,8 @@ jobs:
       - run: npm --prefix desktop run release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # No Developer ID: don't attempt real signing (afterPack.cjs ad-hoc signs).
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
           # macOS code signing + notarization (required for macOS auto-update).
           # Add these repo secrets when you're ready to sign:
           # CSC_LINK: ${{ secrets.MAC_CERT_P12_BASE64 }}

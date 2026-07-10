@@ -31,9 +31,11 @@ enter their Cliniko key once, and it's stored only on their machine.
 
 These builds are **not code-signed yet**, so the OS warns on first launch:
 
-- **macOS**: double-clicking shows "can't be opened / unidentified developer".
-  Fix: **right-click the app → Open → Open**, once. (Or run
-  `xattr -dr com.apple.quarantine "/Applications/Cliniko Capacity.app"`.)
+- **macOS**: the app is ad-hoc signed (not notarized), so first launch shows
+  "unidentified developer". Fix: **right-click the app → Open → Open**, once.
+  If macOS still says the app is "damaged" (some download paths strip the
+  signature), run:
+  `xattr -cr "/Applications/Cliniko Capacity.app" && codesign --force --deep --sign - "/Applications/Cliniko Capacity.app"`.
   Note: macOS auto-update stays off until the app is signed + notarized.
 - **Windows**: SmartScreen shows "unknown publisher" → **More info → Run anyway**.
   Windows auto-update still works.

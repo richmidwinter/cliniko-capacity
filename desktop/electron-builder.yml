@@ -8,6 +8,8 @@ files:
 extraResources:
   - from: renderer
     to: renderer
+# Ad-hoc sign the macOS app so it launches on Apple Silicon (see afterPack.cjs).
+afterPack: ./afterPack.cjs
 # Auto-update source. Set these to your GitHub repo; a tagged release published
 # here is what installed apps check against.
 publish:
@@ -17,12 +19,14 @@ publish:
 mac:
   target: dmg
   category: public.app-category.healthcare-fitness
-  # Unsigned for now: `identity: null` tells electron-builder to skip signing
-  # (so CI doesn't fail looking for a certificate). macOS auto-update stays off
-  # until you sign + notarize. To sign later, remove this line and set:
+  # No Developer ID yet. We DON'T set `identity: null` — that skips signing
+  # entirely, and an unsigned arm64 app is reported as "damaged" on Apple
+  # Silicon. Leaving identity unset lets electron-builder ad-hoc sign, so the
+  # app launches after the normal Gatekeeper bypass (right-click → Open).
+  # To sign + notarize properly later (removes the warning, enables macOS
+  # auto-update), set:
   #   identity: "Developer ID Application: Your Name (TEAMID)"
   # plus the CSC_*/APPLE_* secrets in .github/workflows/release.yml.
-  identity: null
 win:
   target: nsis
 linux:
