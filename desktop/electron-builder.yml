@@ -17,8 +17,12 @@ publish:
 mac:
   target: dmg
   category: public.app-category.healthcare-fitness
-  # Code signing + notarization go here (needed for macOS auto-update):
-  # identity: "Developer ID Application: Your Name (TEAMID)"
+  # Unsigned for now: `identity: null` tells electron-builder to skip signing
+  # (so CI doesn't fail looking for a certificate). macOS auto-update stays off
+  # until you sign + notarize. To sign later, remove this line and set:
+  #   identity: "Developer ID Application: Your Name (TEAMID)"
+  # plus the CSC_*/APPLE_* secrets in .github/workflows/release.yml.
+  identity: null
 win:
   target: nsis
 linux:

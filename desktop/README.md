@@ -18,13 +18,28 @@ the Electron window pointed at it — so renderer changes hot-reload. Changes to
 
 ## What end users get
 
-End users **don't run any of this**. They install a normal app:
+End users **don't run any of this**. They download an installer from the repo's
+**Releases** page and install a normal app:
 
 - **macOS**: `Cliniko Capacity.dmg` → drag to Applications → open.
 - **Windows**: `Cliniko Capacity Setup.exe` → install → launch.
 
 The renderer is bundled inside the app (no localhost, no Node, no terminal). They
-enter their Cliniko key once and it auto-updates in the background.
+enter their Cliniko key once, and it's stored only on their machine.
+
+### First-launch note (unsigned builds)
+
+These builds are **not code-signed yet**, so the OS warns on first launch:
+
+- **macOS**: double-clicking shows "can't be opened / unidentified developer".
+  Fix: **right-click the app → Open → Open**, once. (Or run
+  `xattr -dr com.apple.quarantine "/Applications/Cliniko Capacity.app"`.)
+  Note: macOS auto-update stays off until the app is signed + notarized.
+- **Windows**: SmartScreen shows "unknown publisher" → **More info → Run anyway**.
+  Windows auto-update still works.
+
+Signing later removes these warnings (and enables macOS auto-update) with no code
+changes — see `electron-builder.yml`.
 
 ## Package installers locally
 
