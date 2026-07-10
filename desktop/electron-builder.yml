@@ -16,8 +16,14 @@ publish:
   provider: github
   owner: richmidwinter
   repo: cliniko-capacity
+  # Publish directly (electron-builder defaults to a hidden *draft* release,
+  # which others — and the auto-updater — can't see).
+  releaseType: release
 mac:
-  target: dmg
+  # Universal = one .dmg that runs on both Apple Silicon and Intel Macs.
+  target:
+    - target: dmg
+      arch: universal
   category: public.app-category.healthcare-fitness
   # No Developer ID yet. We DON'T set `identity: null` — that skips signing
   # entirely, and an unsigned arm64 app is reported as "damaged" on Apple
