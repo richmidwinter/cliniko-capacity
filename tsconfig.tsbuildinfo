@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/api/cliniko.ts","./src/components/apikeyprompt.tsx","./src/components/metricsblock.tsx","./src/components/settingspanel.tsx","./src/lib/apikey.ts","./src/lib/metrics.ts","./src/lib/settings.ts","./src/lib/types.ts","./server/index.ts","./vite.config.ts"],"version":"5.9.3"}

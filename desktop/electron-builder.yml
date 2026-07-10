@@ -1,0 +1,25 @@
+appId: com.example.cliniko-capacity
+productName: Cliniko Capacity
+directories:
+  output: release
+# Bundled main/preload live in build/; the renderer is copied in as a resource.
+files:
+  - build/**
+extraResources:
+  - from: renderer
+    to: renderer
+# Auto-update source. Set these to your GitHub repo; a tagged release published
+# here is what installed apps check against.
+publish:
+  provider: github
+  owner: YOUR_GITHUB_USERNAME
+  repo: YOUR_REPO_NAME
+mac:
+  target: dmg
+  category: public.app-category.healthcare-fitness
+  # Code signing + notarization go here (needed for macOS auto-update):
+  # identity: "Developer ID Application: Your Name (TEAMID)"
+win:
+  target: nsis
+linux:
+  target: AppImage
